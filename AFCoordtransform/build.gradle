@@ -3,6 +3,121 @@ apply plugin: 'java-library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
+// 定义变量
+version = "1.0.0"
+def siteUrl = 'https://github.com/AiryMiku/Coordtransform'
+def gitUrl = 'https://github.com/AiryMiku/Coordtransform.git'
+group = "com.airy.AFcoordtransform"
+
+//android {
+//    compileSdkVersion 29
+//    buildToolsVersion "24.0.1"
+//    // 这里添加了一行
+//    resourcePrefix "af"
+//
+//    defaultConfig {
+//        minSdkVersion 15
+//        targetSdkVersion 29
+//        versionCode 1
+//        versionName version
+//    }
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+
+// 重点来了，下面都是
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'AFCoordtransform'    //项目名称
+                description 'A Simple Java Coordtransform Lib.' // 项目描述
+                url siteUrl
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://github.com/AiryMiku/Coordtransform/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'airy'        //填写的一些基本信息
+                        name 'airy'
+                        email 'a532710813@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+// 生成jar/aar包并上传
+task sourcesJar(type: Jar) {
+    //指定生成的jar名
+    baseName 'AFcoordtransformJAR_V1.0'
+    //从哪里打包class文件
+    from('build/intermediates/bundles/default/')
+    //打包到jar后的目录结构
+    into('build/')
+    //去掉不需要打包的目录和文件
+    exclude('test/', 'BuildConfig.class', 'R.class')
+    //去掉R开头的文件
+    exclude{it.name.startsWith('R')}
+    classifier = 'sources'
+}
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    options.encoding = "utf-8"
+//    options.charSet = "utf-8"
+//}
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+artifacts {
+//    archives javadocJar
+    archives sourcesJar
+}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "Coordtransform"
+        name = "AFCoordtransform"    //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["MIT"]
+        publish = true
+        // 下面几行在上传到Maven Center时是必须的，参见本文最后gpg相关部分。
+        // gpg.password是执行gpg --gen-key时弹出框要求输入的密码
+//        version {
+//            gpg {
+//                sign = true
+//                passphrase = properties.getProperty("bintray.gpg.password")
+//            }
+//        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
