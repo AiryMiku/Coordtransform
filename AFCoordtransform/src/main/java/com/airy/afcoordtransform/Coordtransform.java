@@ -79,7 +79,7 @@ public class Coordtransform {
      * @param lng
      * @return
      */
-    private static double[] gcj02towgs84(double lat, double lng) {
+    public static double[] gcj02towgs84(double lat, double lng) {
         if (isOutOfChina(lat, lng)) {
             return new double[]{lat, lng};
         }
@@ -102,14 +102,14 @@ public class Coordtransform {
      * @param bdLongitude
      * @return
      */
-    private static double[] bd09towgs84(double bdLatitude, double bdLongitude) {
+    public static double[] bd09towgs84(double bdLatitude, double bdLongitude) {
         double[] latlng = bd09togcj02(bdLatitude, bdLongitude);
         double lat = latlng[0];
         double lng = latlng[1];
         return gcj02towgs84(lat, lng);
     }
 
-    private static double[] wgs84tobd09(double latitude, double longitude) {
+    public static double[] wgs84tobd09(double latitude, double longitude) {
         double[] latlng = wgs84togcj02(latitude, longitude);
         double lat = latlng[0];
         double lng = latlng[1];
