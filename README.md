@@ -1,7 +1,7 @@
 # Coordtransform
 [ ![Download](https://api.bintray.com/packages/airy/Coordtransform/AFCoordtransform/images/download.svg?version=0.0.1) ](https://bintray.com/airy/Coordtransform/AFCoordtransform/0.0.1/link)
 
-# Thank For
+# Thank
 [https://github.com/wandergis/coordTransform](https://github.com/wandergis/coordTransform)
 
 ## Getting Started
@@ -11,7 +11,7 @@ use maven
 <dependency>
 	<groupId>com.airy.AFcoordtransform</groupId>
 	<artifactId>AFCoordtransform</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<type>pom</type>
 </dependency>
 ```
@@ -27,7 +27,7 @@ use gradle
 ```
 
 ```
-    compile 'com.airy.AFcoordtransform:AFCoordtransform:0.0.1'
+    compile 'com.airy.AFcoordtransform:AFCoordtransform:0.0.2'
 ```
 
 use ivy
@@ -35,7 +35,7 @@ use ivy
 <dependency>
 	<groupId>com.airy.AFcoordtransform</groupId>
 	<artifactId>AFCoordtransform</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<type>pom</type>
 </dependency>
 ```
