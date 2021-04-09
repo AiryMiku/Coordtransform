@@ -1,5 +1,5 @@
 # Coordtransform
-[ ![Download](https://api.bintray.com/packages/airy/Coordtransform/AFCoordtransform/images/download.svg?version=0.0.1) ](https://bintray.com/airy/Coordtransform/AFCoordtransform/0.0.1/link)
+[ ![Download](https://jitpack.io/v/AiryMiku/Coordtransform.svg) ](https://jitpack.io/#AiryMiku/Coordtransform/0.0.2)
 
 # Thank
 [https://github.com/wandergis/coordTransform](https://github.com/wandergis/coordTransform)
@@ -8,6 +8,14 @@
 #### Step 1.Add it in your root build.gradle at the end of repositories and add the dependency:
 use maven
 ```
+// use jitpack
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
+
 <dependency>
 	<groupId>com.airy.AFcoordtransform</groupId>
 	<artifactId>AFCoordtransform</artifactId>
@@ -21,13 +29,18 @@ use gradle
     allprojects {
 		repositories {
 			...
-			jcenter()
+			// better use this
+			maven { url 'https://jitpack.io' }	
+			// jcenter will be end of service at February 1st 2022
+			jcenter()	
 		}
 	}
 ```
 
 ```
     compile 'com.airy.AFcoordtransform:AFCoordtransform:0.0.2'
+	// or
+	implementation 'com.airy.AFcoordtransform:AFCoordtransform:0.0.2'
 ```
 
 use ivy
